@@ -6,7 +6,7 @@
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Funções e Classes](#funções-e-classes)
 
-## Introdução <a name="introdução"></a>
+## Introdução <a name="introdução">:arrow_double_up:</a>
 
 Bem-vindo ao nosso projeto de Sistema de Reservas de Hotel. Este software foi desenvolvido para simplificar a gestão de reservas, check-ins e check-outs em um hotel. Oferecemos uma interface fácil de usar para realizar essas operações de forma eficiente, proporcionando uma visão clara do status dos quartos e facilitando o controle das reservas.
 
