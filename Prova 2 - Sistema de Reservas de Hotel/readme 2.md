@@ -12,11 +12,11 @@ Bem-vindo ao nosso projeto de Sistema de Reservas de Hotel. Este software foi de
 
 ## Como Executar o Projeto <a name="como-executar-o-projeto"></a><a href="#sumario">:arrow_double_up:</a>
 
-### Requisitos <a name="requisitos"></a><a href="#sumario">:arrow_double_up:</a>
+### Requisitos <a name="requisitos"></a>
 1. Baixe o arquivo executável (`main.exe`) do [último release](https://github.com/CSeisOssos/Logica_de_programacao_C/releases/latest).
 2. Certifique-se de ter um ambiente Windows para executar o arquivo executável.
 
-### Executando o Projeto <a name="executando-o-projeto"></a><a href="#sumario">:arrow_double_up:</a>
+### Executando o Projeto <a name="executando-o-projeto"></a>
 1. Execute o arquivo `main.exe`.
 2. Siga as instruções na interface do console para interagir com o sistema.
 
