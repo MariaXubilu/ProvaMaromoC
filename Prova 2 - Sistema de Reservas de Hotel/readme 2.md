@@ -9,6 +9,8 @@
 ## Introdução <a name="introdução"></a>
 
 Bem-vindo ao nosso projeto de Sistema de Reservas de Hotel. Este software foi desenvolvido para simplificar a gestão de reservas, check-ins e check-outs em um hotel. Oferecemos uma interface fácil de usar para realizar essas operações de forma eficiente, proporcionando uma visão clara do status dos quartos e facilitando o controle das reservas.
+Meu professor que pediu a nós para fazer esse projeto, nos deu a ideia de utilizarmos 0 para identificar um quarto livre no hotel e 1 para um quarto ocupado, além disso, nós também 
+implementamos o 2, que é para um quarto bloqueado, um quarto é bloqueado em caso de faxina pesada investigação policial ou coisa do gênero.
 
 ## Como Executar o Projeto <a name="como-executar-o-projeto"></a>
 
