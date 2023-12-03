@@ -28,7 +28,7 @@ O projeto está organizado da seguinte forma:
 - `main.c`: Função principal que interage com o usuário, chamando as funções do hotel.
 
 ## Funções  <a name="funções"></a>
-Agora lidaremos com as funções implementadas em `hotel.c`, e aqui estão elas:
+## Agora lidaremos com as funções implementadas em `hotel.c`, e aqui estão elas:
 
 ### Função: `criarPastaSaves`
 Cria a pasta saves no diretório raiz do projeto, pasta utilizada para guardar os arquivos importados e exportados.
