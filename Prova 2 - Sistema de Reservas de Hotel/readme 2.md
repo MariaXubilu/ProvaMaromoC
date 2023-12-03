@@ -6,33 +6,33 @@
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Funções e Classes](#funções-e-classes)
 
-## Introdução <a name="introdução"></a>
+## Introdução :arrow_double_up: <a name="introdução"></a>
 
 Bem-vindo ao nosso projeto de Sistema de Reservas de Hotel. Este software foi desenvolvido para simplificar a gestão de reservas, check-ins e check-outs em um hotel. Oferecemos uma interface fácil de usar para realizar essas operações de forma eficiente, proporcionando uma visão clara do status dos quartos e facilitando o controle das reservas.
 
-## Como Executar o Projeto <a name="como-executar-o-projeto"></a>
+## Como Executar o Projeto :arrow_double_up: <a name="como-executar-o-projeto"></a>
 
-### Requisitos:
+### Requisitos :arrow_double_up:
 1. Baixe o arquivo executável (`main.exe`) do [último release](https://github.com/CSeisOssos/Logica_de_programacao_C/releases/latest).
 2. Certifique-se de ter um ambiente Windows para executar o arquivo executável.
 
-### Executando o Projeto:
+### Executando o Projeto :arrow_double_up:
 1. Execute o arquivo `main.exe`.
 2. Siga as instruções na interface do console para interagir com o sistema.
 
-## Estrutura do Projeto <a name="estrutura-do-projeto"></a>
+## Estrutura do Projeto :arrow_double_up: <a name="estrutura-do-projeto"></a>
 
 O projeto está organizado da seguinte forma:
 - `hotel.h`: Contém as definições de estruturas e protótipos de funções utilizadas no projeto.
 - `hotel.c`: Implementações das funções definidas em `hotel.h`.
 - `main.c`: Função principal que interage com o usuário, chamando as funções do hotel.
 
-## Funções e Classes <a name="funções-e-classes"></a>
+## Funções e Classes :arrow_double_up: <a name="funções-e-classes"></a>
 
-- **criarPastaSaves**\
+- **criarPastaSaves** :arrow_double_up\
 Cria a pasta saves no diretório raiz do projeto, pasta utilizada para guardar os arquivos importados e exportados.
 
-- **inicializarHotel**\
+- **inicializarHotel** :arrow_double_up\
 Essa função zera todos os valores das reservas ao iniciar o programa para que caracteres aleatórios e bugs não apareçam durante a execução do programa, isso é necessário para setar todos os valores dos quartos como '0'.
 
 - **exportarReservas** :arrow_double_up:\
@@ -56,5 +56,5 @@ Essa função lista todos os quartos disponíveis, mostrando quais quartos ainda
 - **bloquearQuarto** :arrow_double_up:\
 Essa função permite bloquear um quarto, tornando-o indisponível para aluguel por algum tempo. Ela utiliza um ponteiro que muda o valor do quarto digitado de 1 para 2. Eu implementei essa função pensando que uma faxina muito pesada ou investigação policial estariam ocorrendo no quarto.
 
-- **desbloquearQuarto**\
+- **desbloquearQuarto** :arrow_double_up:\
 Essa função desbloqueia um quarto, tornando-o disponível novamente para aluguel. É a única maneira de tornar um quarto bloqueado utilizável novamente.
