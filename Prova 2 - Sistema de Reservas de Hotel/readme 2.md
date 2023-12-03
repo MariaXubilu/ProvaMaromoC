@@ -4,7 +4,7 @@
 - [Introdução](#introdução)
 - [Como Executar o Projeto](#como-executar-o-projeto)
 - [Estrutura do Projeto](#estrutura-do-projeto)
-- [Funções e Classes](#funções-e-classes)
+- [Funções](#funções)
 
 ## Introdução <a name="introdução"></a><a href="#sumario">:arrow_double_up:</a>
 
@@ -17,7 +17,7 @@ Bem-vindo ao nosso projeto de Sistema de Reservas de Hotel. Este software foi de
 2. Certifique-se de ter um ambiente Windows para executar o arquivo executável.
 
 ### Executando o Projeto <a name="executando-o-projeto"></a>
-1. Execute o arquivo `main.exe`.
+1. Baixe o arquivo executável `main.exe`, ou, se preferir, baixe o zip do projeto inteiro e o execute em um IDE para C (como Code::Blocks, CLion ou VS Code com extensões).
 2. Siga as instruções na interface do console para interagir com o sistema.
 
 ## Estrutura do Projeto <a name="estrutura-do-projeto"></a><a href="#sumario">:arrow_double_up:</a>
@@ -26,7 +26,7 @@ O projeto está organizado da seguinte forma:
 - `hotel.c`: Implementações das funções definidas em `hotel.h`.
 - `main.c`: Função principal que interage com o usuário, chamando as funções do hotel.
 
-## Funções e Classes <a name="funções-e-classes"></a><a href="#sumario">:arrow_double_up:</a>
+## Funções <a name="funções"></a><a href="#sumario">:arrow_double_up:</a>
 
 - **criarPastaSaves** 
 Cria a pasta saves no diretório raiz do projeto, pasta utilizada para guardar os arquivos importados e exportados.
