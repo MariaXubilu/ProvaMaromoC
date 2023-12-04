@@ -1,2 +1,0 @@
-Esses exercícios, além de serem realizados com a ajuda de meus professores, também foram respondidos por mim para estudos
-e para meus colegas e amigos que quiserem estudar o básico, por isso existem comentários em todos os exercícios.
