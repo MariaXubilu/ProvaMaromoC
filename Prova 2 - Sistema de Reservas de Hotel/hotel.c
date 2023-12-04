@@ -441,7 +441,7 @@ void bloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
     } else {
         /** Bloqueia o quarto, definindo o status como bloqueado e limpando os dados associados */
         quartoSelecionado->ocupado = 2;
-        strcpy(quartoSelecionado->hospede, "");
+        strcpy(quartoSelecionado->hospede, "--------");
         quartoSelecionado->diasReservados = 0;
 
         printf("Quarto %d no andar %d bloqueado com sucesso.\n", quartoSelecionado->numeroQuarto, andar);
