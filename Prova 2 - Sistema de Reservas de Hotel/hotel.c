@@ -23,7 +23,7 @@ void criarPastaSaves() {
     /** Verifica se a pasta "Saves" já existe */
     struct stat info;
     if (stat("Saves", &info) != 0) {
-        /**Se não existe, tenta criar a pasta */
+        /** Se não existe, tenta criar a pasta */
         #ifdef _WIN32
         if (mkdir("Saves") != 0) {
         #else
@@ -167,7 +167,7 @@ void importarReservas(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int *to
     system (CLEAR_SCREEN);
 }
 
-// Função para limpar o buffer de entrada.
+/** Função para limpar o buffer de entrada. */
 void clear_input_buffer() {
     while (getchar() != '\n');
 }
@@ -179,7 +179,7 @@ void clear_input_buffer() {
 void fazerReserva(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int* totalReservas) {
     int andar, quarto;
 
-    // Adicione validação para garantir que o usuário insira um número válido para o andar.
+    /** Adicione validação para garantir que o usuário insira um número válido para o andar. */
     while (1) {
         printf("Numero do andar: ");
         if (scanf("%d", &andar) != 1 || andar < 1 || andar > NUM_ANDARES) {
@@ -190,7 +190,7 @@ void fazerReserva(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int* totalR
         break;
     }
 
-    // Adicione validação para garantir que o usuário insira um número válido para o quarto.
+    /** Adicione validação para garantir que o usuário insira um número válido para o quarto. */
     while (1) {
         printf("Numero do quarto no andar %d: ", andar);
         if (scanf("%d", &quarto) != 1 || quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
@@ -201,13 +201,13 @@ void fazerReserva(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int* totalR
         break;
     }
 
-    // Obtém um ponteiro para o quarto selecionado.
+    /** Obtém um ponteiro para o quarto selecionado. */
     Reserva* quartoSelecionado = &hotel[andar - 1][quarto - 1];
 
-    // Define a string do hospede como vazia.
+    /** Define a string do hospede como vazia. */
     quartoSelecionado->hospede[0] = '\0';
 
-    // Verifica o status do quarto e toma decisões com base nisso.
+    /** Verifica o status do quarto e toma decisões com base nisso. */
     if (quartoSelecionado->ocupado == 0) {
         printf("Nome do hospede (Escreva tudo junto): ");
         scanf(" %[^\n]", quartoSelecionado->hospede);
@@ -262,7 +262,7 @@ void realizarCheckIn(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
     } else if (quartoSelecionado->ocupado == 2) {
         printf("Quarto bloqueado. Nao e possível realizar check-in.\n");
     } else {
-        // Solicita e armazena o nome do hóspede.
+        /** Solicita e armazena o nome do hóspede. */
         printf("Nome do hospede: ");
         scanf(" %[^\n]", quartoSelecionado->hospede);
 
