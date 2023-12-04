@@ -1,6 +1,6 @@
 # Sistema de Reservas de Hotel
 
-### link do Vídeo explicando como utilizar o projeto: https://youtu.be/TofINT_6gNo
+### link do Vídeo explicando como utilizar o projeto: (https://youtu.be/ACO1782lFqM)
 
 ## **Sumário:**<a name="sumario"></a>
 - [Introdução](#introdução)
