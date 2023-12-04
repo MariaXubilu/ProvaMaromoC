@@ -24,7 +24,7 @@ int main() {
 
     /** Menu principal */
     do {
-        printf("\nMenu:\n");
+        printf("\n ////////////////////////Menu////////////////////////\n");
         printf("1. Fazer Reserva\n");
         printf("2. Realizar Check-In\n");
         printf("3. Realizar Check-Out\n");
