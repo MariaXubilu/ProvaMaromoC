@@ -40,4 +40,4 @@ void bloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]);
  * @param hotel Matriz que representa os quartos do hotel. */
 void desbloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]);
 
-#endif // HOTEL_H
+#endif /** Hotel.h */
