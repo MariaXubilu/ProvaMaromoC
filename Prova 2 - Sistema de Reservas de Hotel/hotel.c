@@ -7,8 +7,10 @@
 #ifdef _WIN32
 #include <windows.h>
 #define CLEAR_SCREEN "cls"
+#include <conio.h>
 #else
-#include <unistd.h>
+#include <stdio_ext.h>
+#define clear_input_buffer() __fpurge(stdin)
 #define CLEAR_SCREEN "clear"
 #endif
 #define MAX_CAMINHO_ARQUIVO 100
@@ -165,64 +167,61 @@ void importarReservas(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int *to
     system (CLEAR_SCREEN);
 }
 
+// Função para limpar o buffer de entrada.
+void clear_input_buffer() {
+    while (getchar() != '\n');
+}
 
 /** Realiza uma reserva em um quarto específico do hotel.
  * Solicita ao usuário o andar e quarto desejados, verifica a disponibilidade e efetua a reserva.
  * São 5 andares com 10 quartos cada, o programa divide isso em uma matriz de 10x5.
  * Utiliza a estrutura Reserva e verifica se o quarto já está ocupado ou bloqueado. */
 void fazerReserva(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int* totalReservas) {
-    /**< Verifica se há espaço disponível para mais reservas. */
-    if (*totalReservas < NUM_ANDARES * NUM_QUARTOS_POR_ANDAR) {
+    int andar, quarto;
+
+    // Adicione validação para garantir que o usuário insira um número válido para o andar.
+    while (1) {
         printf("Numero do andar: ");
-        int andar;
-        scanf("%d", &andar);
-
-        /**< Verifica se o andar fornecido é válido. */
-        if (andar < 1 || andar > NUM_ANDARES) {
+        if (scanf("%d", &andar) != 1 || andar < 1 || andar > NUM_ANDARES) {
             printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
-            system ("pause");
-            system (CLEAR_SCREEN);
-            return;
+            clear_input_buffer();
+            continue;
         }
+        break;
+    }
 
+    // Adicione validação para garantir que o usuário insira um número válido para o quarto.
+    while (1) {
         printf("Numero do quarto no andar %d: ", andar);
-        int quarto;
-        scanf("%d", &quarto);
-
-        /**< Verifica se o quarto fornecido é válido. */
-        if (quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
+        if (scanf("%d", &quarto) != 1 || quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
             printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
-            system ("pause");
-            system (CLEAR_SCREEN);
-            return;
+            clear_input_buffer();
+            continue;
         }
+        break;
+    }
 
-        /**< Obtém um ponteiro para o quarto selecionado. */
-        Reserva* quartoSelecionado = &hotel[andar - 1][quarto - 1];
+    // Obtém um ponteiro para o quarto selecionado.
+    Reserva* quartoSelecionado = &hotel[andar - 1][quarto - 1];
 
-        /**< Define a string do hospede como vazia. */
-        quartoSelecionado->hospede[0] = '\0';
+    // Define a string do hospede como vazia.
+    quartoSelecionado->hospede[0] = '\0';
 
-        /**< Verifica o status do quarto e toma decisões com base nisso. */
-        if (quartoSelecionado->ocupado == 0) {
-            printf("Nome do hospede (Escreva tudo junto): ");
-            scanf(" %[^\n]", quartoSelecionado->hospede);
-            printf("Dias a serem reservados (Em numerais): ");
-            scanf("%d", &quartoSelecionado->diasReservados);
-            quartoSelecionado->ocupado = 1;
-            (*totalReservas)++;
-            printf("Reserva efetuada com sucesso!\n");
-            system ("pause");
-            system (CLEAR_SCREEN);
-        } else {
-            printf("Quarto ocupado ou bloqueado. Escolha outro quarto.\n");
-            system ("pause");
-            system (CLEAR_SCREEN);
-        }
+    // Verifica o status do quarto e toma decisões com base nisso.
+    if (quartoSelecionado->ocupado == 0) {
+        printf("Nome do hospede (Escreva tudo junto): ");
+        scanf(" %[^\n]", quartoSelecionado->hospede);
+        printf("Dias a serem reservados (Em numerais): ");
+        scanf("%d", &quartoSelecionado->diasReservados);
+        quartoSelecionado->ocupado = 1;
+        (*totalReservas)++;
+        printf("Reserva efetuada com sucesso!\n");
+        system("pause");
+        system(CLEAR_SCREEN);
     } else {
-        printf("Numero maximo de reservas atingido. Nao e possivel fazer mais reservas.\n");
-        system ("pause");
-        system (CLEAR_SCREEN);
+        printf("Quarto ocupado ou bloqueado. Escolha outro quarto.\n");
+        system("pause");
+        system(CLEAR_SCREEN);
     }
 }
 
@@ -230,123 +229,107 @@ void fazerReserva(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR], int* totalR
  * Solicita ao usuário o andar e quarto desejados, verifica a disponibilidade e efetua o check-in.
  * Utiliza a estrutura Reserva e verifica se o quarto está ocupado ou bloqueado. */
 void realizarCheckIn(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
-    /** Solicita ao usuário o número do andar desejado */
-    printf("Digite o numero do andar: ");
-    int andar;
-    scanf("%d", &andar);
+    int andar, quarto;
 
-    /** Verifica se o andar fornecido é válido */
-    if (andar < 1 || andar > NUM_ANDARES) {
-        printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
-            system ("pause");
-    system (CLEAR_SCREEN);
-        return;
+    // Adicione validação para garantir que o usuário insira um número válido para o andar.
+    while (1) {
+        printf("Numero do andar: ");
+        if (scanf("%d", &andar) != 1 || andar < 1 || andar > NUM_ANDARES) {
+            printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
+            clear_input_buffer();
+            continue;
+        }
+        break;
     }
 
-    /** Solicita ao usuário o número do quarto desejado no andar informado */
-    printf("Digite o numero do quarto no andar %d: ", andar);
-    int quarto;
-    scanf("%d", &quarto);
-
-    /** Verifica se o número do quarto fornecido é válido */
-    if (quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
-        printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
-            system ("pause");
-    system (CLEAR_SCREEN);
-        return;
+    // Adicione validação para garantir que o usuário insira um número válido para o quarto.
+    while (1) {
+        printf("Numero do quarto no andar %d: ", andar);
+        if (scanf("%d", &quarto) != 1 || quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
+            printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
+            clear_input_buffer();
+            continue;
+        }
+        break;
     }
 
-    /** Obtém o ponteiro para o quarto selecionado na matriz de reservas */
+    // Obtém um ponteiro para o quarto selecionado.
     Reserva* quartoSelecionado = &hotel[andar - 1][quarto - 1];
 
-    /** Verifica o estado do quarto */
+    // Verifica o status do quarto e toma decisões com base nisso.
     if (quartoSelecionado->ocupado == 1) {
         printf("Quarto ja ocupado. Escolha outro quarto.\n");
-            system ("pause");
-    system (CLEAR_SCREEN);
     } else if (quartoSelecionado->ocupado == 2) {
         printf("Quarto bloqueado. Nao e possível realizar check-in.\n");
-            system ("pause");
-    system (CLEAR_SCREEN);
     } else {
-        /** Solicita e armazena o nome do hóspede */
+        // Solicita e armazena o nome do hóspede.
         printf("Nome do hospede: ");
         scanf(" %[^\n]", quartoSelecionado->hospede);
 
-        /** Solicita e armazena a quantidade de dias de reserva */
+        // Solicita e armazena a quantidade de dias de reserva.
         printf("Dias a serem reservados (Em numerais): ");
         scanf("%d", &quartoSelecionado->diasReservados);
 
-        /** Exibe mensagem de check-in bem-sucedido */
+        // Exibe mensagem de check-in bem-sucedido.
         printf("Check-in realizado para o quarto %d no andar %d. Bem-vindo, %s!\n",
             quartoSelecionado->numeroQuarto, andar, quartoSelecionado->hospede);
 
-        /** Marca o quarto como ocupado após o check-in */
+        // Marca o quarto como ocupado após o check-in.
         quartoSelecionado->ocupado = 1;
-            system ("pause");
-    system (CLEAR_SCREEN);
     }
 }
-
 
 /** Realiza o check-out de um hóspede de um quarto específico do hotel.
  * Solicita ao usuário o andar e quarto desejados, verifica se o quarto está ocupado e efetua o check-out.
  * Se o quarto estiver bloqueado, informa ao usuário que não é possível disponibilizá-lo.
  * Utiliza a estrutura Reserva e marca o quarto como livre após o check-out. */
 void realizarCheckOut(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
-    /** Solicita ao usuário o número do andar desejado */
-    printf("Digite o numero do andar: ");
-    int andar;
-    scanf("%d", &andar);
+    int andar, quarto;
 
-    /** Verifica se o andar fornecido é válido */
-    if (andar < 1 || andar > NUM_ANDARES) {
-        printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
-        system("pause");
-        system (CLEAR_SCREEN);
-        return;
+    // Adicione validação para garantir que o usuário insira um número válido para o andar.
+    while (1) {
+        printf("Numero do andar: ");
+        if (scanf("%d", &andar) != 1 || andar < 1 || andar > NUM_ANDARES) {
+            printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
+            clear_input_buffer();
+            continue;
+        }
+        break;
     }
 
-    /** Solicita ao usuário o número do quarto desejado no andar informado */
-    printf("Digite o numero do quarto no andar %d: ", andar);
-    int quarto;
-    scanf("%d", &quarto);
-
-    /** Verifica se o número do quarto fornecido é válido */
-    if (quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
-        printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
-        system("pause");
-        system (CLEAR_SCREEN);
-        return;
+    // Adicione validação para garantir que o usuário insira um número válido para o quarto.
+    while (1) {
+        printf("Numero do quarto no andar %d: ", andar);
+        if (scanf("%d", &quarto) != 1 || quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
+            printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
+            clear_input_buffer();
+            continue;
+        }
+        break;
     }
 
-    /** Obtém o ponteiro para o quarto selecionado na matriz de reservas */
+    // Obtém um ponteiro para o quarto selecionado.
     Reserva* quartoSelecionado = &hotel[andar - 1][quarto - 1];
 
-    /** Verifica o estado do quarto */
+    // Verifica o estado do quarto e toma decisões com base nisso.
     if (quartoSelecionado->ocupado == 0) {
         printf("Quarto nao ocupado. Nao e possível realizar check-out.\n");
-            system ("pause");
-    system (CLEAR_SCREEN);
     } else if (quartoSelecionado->ocupado == 2) {
         printf("Quarto bloqueado. Nao e possível disponibiliza-lo no momento.\n");
-            system ("pause");
-    system (CLEAR_SCREEN);
     } else {
-        /** Exibe a mensagem de check-out com o nome do hóspede */
+        // Exibe a mensagem de check-out com o nome do hóspede.
         printf("Check-out realizado para o quarto %d no andar %d. Obrigado por se hospedar, %s!\n",
             quartoSelecionado->numeroQuarto, andar, quartoSelecionado->hospede);
 
-        /** Marca o quarto como livre após o check-out */
+        // Marca o quarto como livre após o check-out.
         quartoSelecionado->ocupado = 0;
-        strcpy(quartoSelecionado->hospede, ""); /** Limpa o nome do hóspede */
+        strcpy(quartoSelecionado->hospede, ""); // Limpa o nome do hóspede.
         quartoSelecionado->diasReservados = 0;
 
         system("pause");
         system(CLEAR_SCREEN);
     }
 }
-
 
 
 /** Exibe a lista de reservas, indicando o status de ocupação de cada quarto.
@@ -450,6 +433,7 @@ void bloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
     system (CLEAR_SCREEN);
 }
 
+
 /** Desbloqueia um quarto específico do hotel, permitindo futuras reservas ou check-ins.
  * Solicita ao usuário o andar e quarto desejados, verifica se o quarto está bloqueado e desbloqueia.
  * Utiliza a estrutura Reserva e define o status do quarto como livre. */
@@ -457,26 +441,30 @@ void desbloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
     /**< Solicita ao usuário o número do andar. */
     printf("Digite o numero do andar: ");
     int andar;
-    scanf("%d", &andar);
-
-    /**< Verifica se o número do andar é válido. */
-    if (andar < 1 || andar > NUM_ANDARES) {
+    
+    /**< Valida a entrada do andar. */
+    if (scanf("%d", &andar) != 1 || andar < 1 || andar > NUM_ANDARES) {
         printf("Andar invalido. Escolha um andar entre 1 e %d.\n", NUM_ANDARES);
+        
+        /**< Limpa o buffer de entrada para evitar problemas nas próximas entradas. */
+        while (getchar() != '\n');
         system("pause");
-        system (CLEAR_SCREEN);
+        system(CLEAR_SCREEN);
         return;
     }
 
     /**< Solicita ao usuário o número do quarto no andar especificado. */
     printf("Digite o numero do quarto no andar %d: ", andar);
     int quarto;
-    scanf("%d", &quarto);
 
-    /**< Verifica se o número do quarto é válido. */
-    if (quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
+    /**< Valida a entrada do número do quarto. */
+    if (scanf("%d", &quarto) != 1 || quarto < 1 || quarto > NUM_QUARTOS_POR_ANDAR) {
         printf("Quarto invalido. Escolha um quarto entre 1 e %d.\n", NUM_QUARTOS_POR_ANDAR);
+        
+        /**< Limpa o buffer de entrada para evitar problemas nas próximas entradas. */
+        while (getchar() != '\n');
         system("pause");
-        system (CLEAR_SCREEN);
+        system(CLEAR_SCREEN);
         return;
     }
 
@@ -488,12 +476,12 @@ void desbloquearQuarto(Reserva hotel[NUM_ANDARES][NUM_QUARTOS_POR_ANDAR]) {
         /**< Define o status do quarto como livre (0). */
         quartoSelecionado->ocupado = 0;
         printf("Quarto %d no andar %d desbloqueado com sucesso.\n", quartoSelecionado->numeroQuarto, andar);
-        system("pause");
-        system (CLEAR_SCREEN);
     } else {
         /**< Informa que o quarto não está bloqueado ou não foi encontrado. */
         printf("Quarto nao encontrado ou nao esta bloqueado.\n");
-        system("pause");
-        system (CLEAR_SCREEN);
     }
+
+    /**< Limpa a tela para melhorar a experiência do usuário. */
+    system("pause");
+    system(CLEAR_SCREEN);
 }
